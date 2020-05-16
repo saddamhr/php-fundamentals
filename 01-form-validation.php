@@ -13,11 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if (empty($_POST['email'])) {
         $erremail = "<span style='color:red'>E-mail is required.</span>";
+    } elseif(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+        $erremail = "<span style='color:red'>Invalid E-mail format.</span>";
     } else {
         $email = validate($_POST['email']);
     }
     if (empty($_POST['website'])) {
         $errweb = "<span style='color:red'>Website is required.</span>";
+    } elseif(!filter_var($_POST["website"], FILTER_VALIDATE_URL)) {
+        $errweb = "<span style='color:red'>Invalid Website format.</span>";
     } else {
         $website = validate($_POST['website']);
     }
